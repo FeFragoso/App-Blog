@@ -14,7 +14,7 @@ export default function Routes(){
                 component={Home}
             />
 
-            <Stack.Navigator
+            <Stack.Screen
                 name='Detail'
                 component={Detail}
             />
