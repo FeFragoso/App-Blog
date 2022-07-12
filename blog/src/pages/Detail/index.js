@@ -1,10 +1,10 @@
 import React from "react"
 import { View, Text, StyleSheet } from 'react-native'
 
-export default function Home(){
+export default function Detail(){
   return(
     <View style={s.container}>
-      <Text style={s.h1}>Fragoso</Text>
+      <Text style={s.h1}>Página de Detalhes</Text>
     </View>
   )
 }
