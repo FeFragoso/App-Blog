@@ -1,6 +1,7 @@
 import React from "react"
-import { SafeAreaView, Text, Button, StyleSheet } from 'react-native'
+import { View, SafeAreaView, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
+import { Feather } from '@expo/vector-icons'
 
 export default function Home(){
 
@@ -8,24 +9,44 @@ export default function Home(){
 
   return(
     <SafeAreaView style={s.container}>
-      <Text style={s.h1}>Fragoso</Text>
 
-      <Button
-        title="Detalhes"
-        onPress={ ()=> navi.navigate("Detail")}
-      />
+      <View style={s.header}>
+        
+        <Text style={s.h1}>DevBlog</Text>
+
+        <TouchableOpacity>
+
+          <Feather
+            name="search"
+            size={24}
+            color='#fff'
+          />
+
+        </TouchableOpacity>
+
+      </View>
+
     </SafeAreaView>
   )
 }
 
 const s = StyleSheet.create({
   container:{
-    backgroundColor: '#fff',
+    backgroundColor: '#232630',
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    
+  },
+  header:{
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginHorizontal: 18,
+    marginTop: 18,
+    marginBottom: 24
   },
   h1:{
-    color: "#000"
+    fontSize: 28,
+    color: '#fff',
+    fontWeight: 'bold'
   }
 })
