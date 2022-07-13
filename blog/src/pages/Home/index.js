@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { View, SafeAreaView, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { Feather } from '@expo/vector-icons'
@@ -14,7 +14,9 @@ export default function Home(){
         
         <Text style={s.h1}>DevBlog</Text>
 
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={ ()=> navi.navigate('Search') }
+        >
 
           <Feather
             name="search"
