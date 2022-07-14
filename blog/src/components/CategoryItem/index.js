@@ -2,7 +2,7 @@ import React from "react"
 import { TouchableOpacity, Text, Image, StyleSheet } from 'react-native'
 import { useNavigation } from "@react-navigation/native"
 
-export default function CategoryItem({ data }){
+export default function CategoryItem({ data, favorite }){
 
     const navi = useNavigation()
 
@@ -15,6 +15,7 @@ export default function CategoryItem({ data }){
             style={s.container}
             activeOpacity={0.9}
             onPress={handleNavigate}
+            onLongPress={ favorite }
         >
 
             <Image

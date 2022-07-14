@@ -5,11 +5,14 @@ import { Feather } from '@expo/vector-icons'
 
 import api from '../../services/api'
 import CategoryItem from '../../components/CategoryItem'
+import { getFavorite, setFavorite } from "../../services/favorite"
+import FavoritePost from '../../components/FavoritePost'
 
 export default function Home(){
 
   const navi = useNavigation()
   const [categories, setCategories] = useState([])
+  const [favCategory, setFavCategory] = useState([])
 
   useEffect(()=> {
 
@@ -21,6 +24,22 @@ export default function Home(){
     loadData()
 
   }, [])
+
+  useEffect(()=> {
+
+    async function favorite(){
+      const response = await getFavorite()
+      setFavCategory(response)
+    }
+
+  }, [])
+
+  async function handleFavorite(id){
+    const response = await setFavorite(id)
+
+    setFavCategory(response)
+    alert('Deu certo!')
+  }
 
   return(
     <SafeAreaView style={s.container}>
@@ -53,9 +72,26 @@ export default function Home(){
         renderItem={ ({ item })=> (
           <CategoryItem
             data={item}
+            favorite={ ()=> handleFavorite(item.id) }
           />
         ) }
       />
+
+      <View style={s.main}>
+
+          {favCategory.length !== 0 && (
+            <FlatList
+              style={{ marginTop: 50, maxHeight: 100, paddingStart: 18 }}
+              contentContainerStyle={{ paddingEnd: 18 }}
+              data={favCategory}
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={ (item)=> String(item.id) }
+              renderItem={ ({ item })=> <FavoritePost data={item} /> }
+            />
+          )}
+
+      </View>
 
     </SafeAreaView>
   )
